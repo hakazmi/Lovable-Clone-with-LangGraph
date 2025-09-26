@@ -56,11 +56,13 @@ cd ai-app-builder-demo
 - source venv/bin/activate   # On Windows: venv\Scripts\activate
 - pip install -r requirements.txt
 - uvicorn main:app --reload --port 8080
+- Backend will run on: http://localhost:8080
 ### 3. Setup Frontend (Next.js)
 
 - cd template\next-basic
 - npm install
 - npm run dev
+- Frontend will run on: http://localhost:3000
 
 
 
