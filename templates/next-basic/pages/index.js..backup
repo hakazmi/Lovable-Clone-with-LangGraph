@@ -1,0 +1,36 @@
+import contacts from '../data/contacts.json'
+
+export default function Home() {
+  return (
+    <div className="app min-h-screen bg-gray-100 dark:bg-gray-900">
+      <header className="p-5 border-b">
+        <h1 className="text-2xl font-bold">Mini App - Generated</h1>
+      </header>
+
+      <main className="p-5">
+        <section>
+          <h2 className="text-xl font-semibold mb-2">Contacts</h2>
+          <table className="border-collapse border border-gray-400">
+            <thead>
+              <tr>
+                <th className="border border-gray-400 px-4 py-2">Name</th>
+                <th className="border border-gray-400 px-4 py-2">Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              {contacts.map((c, i) => (
+                <tr key={i}>
+                  <td className="border border-gray-400 px-4 py-2">{c.name}</td>
+                  <td className="border border-gray-400 px-4 py-2">{c.email}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+
+        {/* PATCH:EXTRA_UI */}
+      </main>
+    </div>
+  )
+}
+

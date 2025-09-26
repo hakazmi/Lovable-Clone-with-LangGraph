@@ -1,0 +1,36 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment (your `code/` folder is venv)
+code/
+.env
+.venv/
+env/
+venv/
+
+# VSCode & IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Node.js (from Next.js template)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Docker
+.dockerignore
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.out
+*.pid
+*.swp

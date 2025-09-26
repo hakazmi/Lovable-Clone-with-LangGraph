@@ -1,0 +1,34 @@
+<div id="taskLog" data-run-url="{{ run_url or '' }}" data-slug="{{ slug or '' }}">
+  {% if task_log %}
+    {% for t in task_log %}
+      <div class="task-row {% if t.status == 'running' %}running{% elif t.status == 'success' %}success{% elif t.status == 'error' %}error{% endif %}">
+        <div class="task-header">
+          <div class="task-node">{{ t.node }}</div>
+          <div class="task-status {% if t.status == 'running' %}status-running{% elif t.status == 'success' %}status-success{% elif t.status == 'error' %}status-error{% endif %}">
+            {{ t.status }}
+          </div>
+        </div>
+        <div class="task-time">{{ t.when if t.when else "just now" }}</div>
+        <div class="task-note">{{ t.note }}</div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="empty-state">
+      <div class="empty-state-icon">📋</div>
+      <div>No tasks logged yet.</div>
+    </div>
+  {% endif %}
+
+  {% if run_url %}
+    <div class="app-actions">
+      <a href="{{ run_url }}" target="_blank" class="app-action">🔗 Open Preview</a>
+      <a href="/export/{{ slug }}" class="app-action">⬇️ Export ZIP</a>
+      <form style="display:inline" method="post" action="/reset/{{ slug }}" 
+            onsubmit="return confirm('Reset will delete the run. Continue?')">
+        <button type="submit" class="app-action button-danger" style="border: none;">
+          Reset
+        </button>
+      </form>
+    </div>
+  {% endif %}
+</div>
