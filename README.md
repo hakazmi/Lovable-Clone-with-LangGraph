@@ -79,11 +79,11 @@ The system takes the user’s prompt, **plans the app**, **scaffolds the code**,
 ## ⚙️ Environment Variables
 
 - Copy .env.example to .env and set your own keys (e.g., OPENAI_API_KEY, langsmith key).
-- ( OPENAI_API_KEY="enter your key"
-    OPENAI_MODEL=gpt-4o-mini
-    LANGCHAIN_TRACING_V2=true
-    LANGCHAIN_API_KEY="enter your key"
-    LANGCHAIN_PROJECT=loveable_lite)
+- ( - OPENAI_API_KEY="enter your key"
+    - OPENAI_MODEL=gpt-4o-mini
+    - LANGCHAIN_TRACING_V2=true
+    - LANGCHAIN_API_KEY="enter your key"
+    - LANGCHAIN_PROJECT=loveable_lite)
 - The container automatically picks up .env via docker-compose.yml.
 
 ## 🎮 Usage
@@ -109,5 +109,4 @@ The system takes the user’s prompt, **plans the app**, **scaffolds the code**,
 
 
 
-git clone https://github.com/yourusername/ai-app-builder-demo.git
-cd ai-app-builder-demo
+
