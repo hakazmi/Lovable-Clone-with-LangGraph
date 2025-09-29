@@ -1,31 +1,34 @@
-# Use official lightweight Python image
-FROM python:3.10-slim
+# Dockerfile (recommended)
+FROM python:3.12-alpine
 
-# Set environment variables
+WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# Set working directory
-WORKDIR /app
+# Install system deps + nodejs & npm
+RUN apk add --no-cache \
+    gcc musl-dev libffi-dev openssl-dev libuv-dev \
+    nodejs npm git
 
-# Install system dependencies (if needed)
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    curl \
-    git \
-    && rm -rf /var/lib/apt/lists/*
+# Copy requirements and install globally
+COPY requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
-# Copy requirements first (for caching)
-COPY requirements.txt /app/
+# Debug step (optional)
+RUN python -c "import uvicorn; print('uvicorn ok')"
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy application code
+COPY . /app
 
-# Copy project files
-COPY . /app/
+# Install node deps for template (if you need them at build time)
+RUN npm install --prefix templates/next-basic || true
 
-# Expose port (change if needed)
-EXPOSE 8080
+# Expose ports
+EXPOSE 8081
+EXPOSE 3000-3050
 
-# Run the app (adjust if entrypoint changes)
+# Use uvicorn directly (recommended) or your run.py
+# If your FastAPI app is in run.py and exposes `app`, you can use:
+# CMD ["uvicorn", "run:app", "--host", "0.0.0.0", "--port", "8081", "--workers", "1"]
+# Otherwise use run.py
 CMD ["python", "run.py"]
