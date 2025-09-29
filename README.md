@@ -67,7 +67,7 @@ The system takes the user’s prompt, **plans the app**, **scaffolds the code**,
 ### 3. Run container
 - docker compose up -d
 ### 4. Check logs(optional)
--docker compose logs -f
+- docker compose logs -f
 
 
 ## 🌐 Access the App
